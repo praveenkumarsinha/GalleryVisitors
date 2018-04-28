@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gallery visitors</title>
+  <%= csrf_meta_tags %>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="turbolinks-cache-control" content="no-preview"> <!-- else in page js is called twice -->
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= favicon_link_tag %>
+</head>
+
+<body style="font-family: 'Product Sans';color: #444">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark justify-content-between">
+  <%= link_to root_path, class: 'navbar-brand' do %>
+      Gallery Visitors
+  <% end %>
+</nav>
+
+<div class='container mt-4'>
+  <%= yield %>
+</div>
+</body>
+</html>

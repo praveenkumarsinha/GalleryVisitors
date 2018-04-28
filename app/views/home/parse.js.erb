@@ -1,0 +1,5 @@
+<%if @message%>
+alert('<%=@message%>');
+<%else%>
+$('.inference_container').replaceWith("<%=j(render(partial: 'home/inference_container', locals: {inferences: @inferences}))%>");
+<%end%>

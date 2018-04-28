@@ -1,0 +1,18 @@
+<%
+  inferences ||= nil
+%>
+<div class="row justify-content-center inference_container">
+  <% if inferences %>
+      <div class="col">
+        <h3>Inferences from file uploaded @ <%= Time.now %> are: </h3>
+
+        <% inferences.each do |statement| %>
+            <div class="alert alert-primary" role="alert"><%= statement %></div>
+        <% end %>
+      </div>
+  <% else %>
+      <div class="col-7">
+        <h3>Inferences will appear here once log is uploaded.</h3>
+      </div>
+  <% end %>
+</div>

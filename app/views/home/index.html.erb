@@ -1,0 +1,15 @@
+<div class="row justify-content-center">
+  <div class="col-7">
+    <div class="jumbotron">
+      <%= form_with(scope: 'log', url: parse_path, class: 'form-inline') do |f| %>
+          <div class="form-group mb-2">
+            <%= f.label :file, 'Select Log file' %>
+            <%= f.file_field :file, class: 'form-control-file' %>
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Upload log</button>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr/>
+<%= render(partial: 'home/inference_container') %>
