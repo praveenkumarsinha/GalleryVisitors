@@ -69,4 +69,23 @@ class LogParser
     formatted_inferences
   end
 
+  def inferences_per_visitor
+    _inference_hash_per_visitor = {}
+
+    @inference_hash.each do |room_index_key, visitor_info_hash|
+      visitor_info_hash.each do |visitor_id, in_out_array|
+        _inference_hash_per_visitor[visitor_id] ||= {}
+        (_inference_hash_per_visitor[visitor_id][room_index_key] ||= []) << ((in_out_array.collect {|in_out_log| in_out_log[:out] - in_out_log[:in]}.inject(&:+) / in_out_array.length.to_f) rescue 0.0)
+      end
+    end
+
+    formatted_inferences = _inference_hash_per_visitor.collect do |visitor_id, average_time_in_rooms|
+      "Visitor #{visitor_id}, spent #{((average_time_in_rooms.values.flatten.inject(&:+) / average_time_in_rooms.keys.length).floor rescue 'N.A')} minute(s) in #{average_time_in_rooms.keys.length} rooms."
+    end
+
+    formatted_inferences = ['Unable to device presentable inferences from logs'] if formatted_inferences.blank?
+
+    formatted_inferences
+  end
+
 end

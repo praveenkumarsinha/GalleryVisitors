@@ -1,18 +1,57 @@
 <%
   inferences ||= nil
+  inferences_per_visitor ||= nil
 %>
-<div class="row justify-content-center inference_container">
-  <% if inferences %>
-      <div class="col">
-        <h3>Inferences from file uploaded @ <%= Time.now %> are: </h3>
 
-        <% inferences.each do |statement| %>
-            <div class="alert alert-primary" role="alert"><%= statement %></div>
-        <% end %>
+<div class="inference_container">
+
+  <% if inferences %>
+
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" href="#inference_per_room" role="tab" data-toggle="tab">Inference (per room)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#inference_per_visitor" role="tab" data-toggle="tab">Inference (per visitor)</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content mt-4">
+        <div role="tabpanel" class="tab-pane fade in active" id="inference_per_room">
+          <div class="row">
+            <div class="col-12">
+              <h6>Inferences from file uploaded @ <%= Time.now %> are: </h6>
+
+              <% inferences.each do |statement| %>
+                  <div class="alert alert-primary" role="alert"><%= statement %></div>
+              <% end %>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="inference_per_visitor">
+          <div class="row">
+            <div class="col-12">
+              <h6>Inferences from file uploaded @ <%= Time.now %> are: </h6>
+
+              <% inferences_per_visitor.each do |statement| %>
+                  <div class="alert alert-primary" role="alert"><%= statement %></div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
       </div>
+
   <% else %>
-      <div class="col-7">
-        <h3>Inferences will appear here once log is uploaded.</h3>
+      <div class="row justify-content-center ">
+        <div class="col-7">
+          <h2>Inferences will show here once log file is available processed.</h2>
+        </div>
       </div>
   <% end %>
+
 </div>

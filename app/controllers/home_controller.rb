@@ -9,6 +9,7 @@ class HomeController < ApplicationController
       if params.dig(:log, :file)
         log_parser = LogParser.parse(File.open(params[:log][:file].path))
         @inferences = log_parser.formatted_inferences
+        @inferences_per_visitor = log_parser.inferences_per_visitor
       else
         @message = 'Log file not found. Please upload a valid log file.'
       end
